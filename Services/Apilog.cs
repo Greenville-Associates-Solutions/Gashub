@@ -9,7 +9,7 @@ namespace Enterpriseservices
 
         public static void logapi(string apiname, string apinumber, string eptype, int hashid, string parameterlist, string apiresult)
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 var logEntry = new Apilog
                 {

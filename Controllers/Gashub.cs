@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using GasHub.Models;
+using GasHub.Data;
 using Enterpriseservices;
 using Microsoft.Extensions.WebEncoders.Testing;
 using Microsoft.AspNetCore.Routing;
@@ -27,7 +28,7 @@ public static class GashubEndpoints
         {
            
 
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GET", 1, "Test", "Test");
                 return context.Gashubs.ToList();
@@ -40,7 +41,7 @@ public static class GashubEndpoints
         //[HttpGet]
         group.MapGet("/{id}", (int id) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GETWITHID", 1, "Test", "Test"); 
                 return context.Gashubs.Where(m => m.GashubId == id).ToList();
@@ -52,7 +53,7 @@ public static class GashubEndpoints
         //[HttpPut]
         group.MapPut("/{id}", async (int id, Gashub input) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Gashub[] someGashub = context.Gashubs.Where(m => m.GashubId == id).ToArray();
                 context.Gashubs.Attach(someGashub[0]);
@@ -69,7 +70,7 @@ public static class GashubEndpoints
 
         group.MapPost("/", async (Gashub input) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Random rnd = new Random();
                 int dice = rnd.Next(1000, 10000000);
@@ -86,7 +87,7 @@ public static class GashubEndpoints
 
         group.MapDelete("/{id}", async (int id) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 //context.Gashubs.Add(std);
                 Gashub[] someGashubs = context.Gashubs.Where(m => m.GashubId == id).ToArray();

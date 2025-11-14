@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using GasHub.Models;
+using GasHub.Data;
 using Microsoft.AspNetCore.Routing;
 using Enterpriseservices;
 using Microsoft.Extensions.WebEncoders.Testing;
@@ -27,7 +28,7 @@ public static class GasPriceRecordEndpoints
         {
            
 
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GET", 1, "Test", "Test");
                 return context.GasPriceRecords.ToList();
@@ -40,7 +41,7 @@ public static class GasPriceRecordEndpoints
         //[HttpGet]
         group.MapGet("/{id}", (int id) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GETWITHID", 1, "Test", "Test"); 
                 return context.GasPriceRecords.Where(m => m.GasPriceRecordId == id).ToList();
@@ -52,7 +53,7 @@ public static class GasPriceRecordEndpoints
         //[HttpPut]
         group.MapPut("/{id}", async (int id, GasPriceRecord input) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 GasPriceRecord[] someGasPriceRecord = context.GasPriceRecords.Where(m => m.GasPriceRecordId == id).ToArray();
                 context.GasPriceRecords.Attach(someGasPriceRecord[0]);
@@ -69,7 +70,7 @@ public static class GasPriceRecordEndpoints
 
         group.MapPost("/", async (GasPriceRecord input) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 Random rnd = new Random();
                 int dice = rnd.Next(1000, 10000000);
@@ -86,7 +87,7 @@ public static class GasPriceRecordEndpoints
 
         group.MapDelete("/{id}", async (int id) =>
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 //context.GasPriceRecords.Add(std);
                 GasPriceRecord[] someGasPriceRecords = context.GasPriceRecords.Where(m => m.GasPriceRecordId == id).ToArray();

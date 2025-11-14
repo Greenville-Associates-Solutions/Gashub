@@ -12,7 +12,7 @@ namespace Enterpriseservices
         // CREATE A FUNCTION VALIDATE THAT RETURNS A BOOLEAN 1 FOR GOOD LOGIN, AND A TOKEN, OR 0 FOR FAILED LOGIN, AND A NULL VALUE FOR TOKEN
         public (int, string) Validate(int userid, int hashid, string userhashedpassword)
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 var user = context.Users.FirstOrDefault(u => u.Id == userid);
                 if (user == null || string.IsNullOrEmpty(user.Hashedpassword))
@@ -64,7 +64,7 @@ namespace Enterpriseservices
 
         private void CreateSession(int id, string token)
         {
-            using (var context = new GashubContext())
+            using (var context = new GasHubContext())
             {
                 var session = new Usersession
                 {
