@@ -399,9 +399,9 @@
     "EndpointName": "DeleteGasPriceRecord"
   },
   {
-    "ContainingType": "LinuxConsoleController",
+    "ContainingType": "GasActionsController",
     "Method": "GetSystemInfo",
-    "RelativePath": "LinuxConsole/{option}",
+    "RelativePath": "GasActions/{option}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

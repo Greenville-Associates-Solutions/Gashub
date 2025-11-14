@@ -5,11 +5,11 @@ using System.Linq;
 
 [ApiController]
 [Route("[controller]")]
-public class LinuxConsoleController : ControllerBase
+public class GasActionsController : ControllerBase
 {
     private readonly string[] databaseNodes = { "10.144.0.100", "10.144.1.100", "10.144.2.100", "10.144.3.100", "10.144.4.100" };
     private readonly string[] webServerNodes = { "10.144.0.152", "10.144.1.151", "10.144.2.151", "10.144.3.151", "10.144.4.151" };
-    private readonly string[] gashubNodes = { "10.144.0.152", "10.144.1.151", "10.144.2.151", "10.144.3.151", "10.144.4.151" };
+    private readonly string[] gashubNodes = { "Tulsa", "Austin", "Dallas", "OklahomaCity", "Phoenix" };
 
     [HttpGet("{option}")]
     public IActionResult GetSystemInfo(int option)
@@ -18,10 +18,7 @@ public class LinuxConsoleController : ControllerBase
         {
             case 1: return ListGasHubs(); // Linux System Information
             case 2: return GetPriceHistory(1);//("/bin/bash", "-c \"netstat -ntla\""); // Network Status
-            case 3: return GetServerIPs(); // Get IPs
-            case 4: return PingServers(); // Ping IPs with 3 attempts and 2s timeout
-            case 5: return ExecuteCommand("/bin/bash", "-c \"ifconfig"); // Return IP Information
-            case 99: return RunMigrations(); // Run Database Migrations
+            case 3: return ProcessPrices(1); // Get IPs
             default:
                 return BadRequest(new { Error = "Invalid option. Use 1 for system info, 2 for network status, 3 for IPs, 4 for latency, or 99 for migrations." });
         }
@@ -56,6 +53,18 @@ public class LinuxConsoleController : ControllerBase
 
         return Ok(response);
     }
+
+    private IActionResult ProcessPrices(int a)
+    {
+        var response = new
+        {
+            Branches = gashubNodes,
+        };
+
+        return Ok(response);
+    }
+
+
 
     private IActionResult PingServers()
     {

@@ -154,6 +154,29 @@
         }
       }
     },
+    "/GasActions/{option}": {
+      "get": {
+        "tags": [
+          "GasActions"
+        ],
+        "parameters": [
+          {
+            "name": "option",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Gashub": {
       "get": {
         "tags": [
@@ -448,29 +471,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/LinuxConsole/{option}": {
-      "get": {
-        "tags": [
-          "LinuxConsole"
-        ],
-        "parameters": [
-          {
-            "name": "option",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
