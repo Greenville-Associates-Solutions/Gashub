@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gasBatchProcessing")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9522c31ebee1a689a9ca833e512e0c67738f28f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce94ce9d8f0b8ffbb14be9c571204fad12381dfc")]
 [assembly: System.Reflection.AssemblyProductAttribute("gasBatchProcessing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gasBatchProcessing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

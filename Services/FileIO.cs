@@ -1,6 +1,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using GasHub.Models;
 
-namespace Enterprise.Services
+namespace Enterpriseservices
 {
 
     public class GasIO
