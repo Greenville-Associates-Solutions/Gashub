@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "X:\\547EC\\gasHub\\gasBatchProcessing.csproj": {}
+    "X:\\G547\\Gashub\\gasBatchProcessing.csproj": {}
   },
   "projects": {
-    "X:\\547EC\\gasHub\\gasBatchProcessing.csproj": {
+    "X:\\G547\\Gashub\\gasBatchProcessing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "X:\\547EC\\gasHub\\gasBatchProcessing.csproj",
+        "projectUniqueName": "X:\\G547\\Gashub\\gasBatchProcessing.csproj",
         "projectName": "gasBatchProcessing",
-        "projectPath": "X:\\547EC\\gasHub\\gasBatchProcessing.csproj",
+        "projectPath": "X:\\G547\\Gashub\\gasBatchProcessing.csproj",
         "packagesPath": "C:\\Users\\stritzj\\.nuget\\packages\\",
-        "outputPath": "X:\\547EC\\gasHub\\obj\\",
+        "outputPath": "X:\\G547\\Gashub\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\stritzj\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.00"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.00",
             "projectReferences": {}
           }
         },
@@ -41,8 +41,8 @@
         "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.00",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -74,24 +74,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.13, 8.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.13, 8.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.13, 8.0.13]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.13, 8.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
