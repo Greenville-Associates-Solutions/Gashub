@@ -1,4 +1,4 @@
-﻿namespace GasPriceAnalysis;
+﻿/*namespace GasPriceAnalysis;
 
 /// <summary>
 /// Main program class for the Gas Price Analysis application
@@ -69,4 +69,4 @@ class Program
     }
 
   }
-}
+}*/

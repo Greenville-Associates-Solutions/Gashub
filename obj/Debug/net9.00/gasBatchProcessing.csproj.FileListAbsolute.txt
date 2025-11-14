@@ -136,3 +136,12 @@ X:\G547\Gashub\obj\Debug\net9.00\refint\gasBatchProcessing.dll
 X:\G547\Gashub\obj\Debug\net9.00\gasBatchProcessing.pdb
 X:\G547\Gashub\obj\Debug\net9.00\gasBatchProcessing.genruntimeconfig.cache
 X:\G547\Gashub\obj\Debug\net9.00\ref\gasBatchProcessing.dll
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.dll
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\refint\gasBatchProcessing.dll
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.pdb
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.csproj.AssemblyReference.cache
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.AssemblyInfoInputs.cache
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.AssemblyInfo.cs
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.csproj.CoreCompileInputs.cache
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\gasBatchProcessing.sourcelink.json

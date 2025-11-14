@@ -4,13 +4,13 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OpenApi;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using GasHub.Models;
-using GasHub.Data;
+using Gas.Models;
 using Enterpriseservices;
 using Microsoft.Extensions.WebEncoders.Testing;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Builder;
 namespace Enterprise.Controllers;
 
 
@@ -28,7 +28,7 @@ public static class GashubEndpoints
         {
            
 
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GET", 1, "Test", "Test");
                 return context.Gashubs.ToList();
@@ -41,10 +41,10 @@ public static class GashubEndpoints
         //[HttpGet]
         group.MapGet("/{id}", (int id) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GETWITHID", 1, "Test", "Test"); 
-                return context.Gashubs.Where(m => m.GashubId == id).ToList();
+                return context.Gashubs.Where(m => m.Id == id).ToList();
             }
         })
         .WithName("GetGashubById")
@@ -53,14 +53,14 @@ public static class GashubEndpoints
         //[HttpPut]
         group.MapPut("/{id}", async (int id, Gashub input) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
-                Gashub[] someGashub = context.Gashubs.Where(m => m.GashubId == id).ToArray();
+                Gashub[] someGashub = context.Gashubs.Where(m => m.Id == id).ToArray();
                 context.Gashubs.Attach(someGashub[0]);
                 if (input.Description != null) someGashub[0].Description = input.Description;
                 await context.SaveChangesAsync();
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "PUTWITHID", 1, "Test", "Test");
-                return TypedResults.Accepted("Updated ID:" + input.GashubId);
+                return TypedResults.Accepted("Updated ID:" + input.Id);
             }
 
 
@@ -70,7 +70,7 @@ public static class GashubEndpoints
 
         group.MapPost("/", async (Gashub input) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 Random rnd = new Random();
                 int dice = rnd.Next(1000, 10000000);
@@ -78,7 +78,7 @@ public static class GashubEndpoints
                 context.Gashubs.Add(input);
                 await context.SaveChangesAsync();
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "NEWRECORD", 1, "TEST", "TEST");
-                return TypedResults.Created("Created ID:" + input.GashubId);
+                return TypedResults.Created("Created ID:" + input.Id);
             }
 
         })
@@ -87,10 +87,10 @@ public static class GashubEndpoints
 
         group.MapDelete("/{id}", async (int id) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 //context.Gashubs.Add(std);
-                Gashub[] someGashubs = context.Gashubs.Where(m => m.GashubId == id).ToArray();
+                Gashub[] someGashubs = context.Gashubs.Where(m => m.Id == id).ToArray();
                 context.Gashubs.Attach(someGashubs[0]);
                 context.Gashubs.Remove(someGashubs[0]);
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "DELETEWITHID",1, "TEST", "TEST");

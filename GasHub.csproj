@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+<PropertyGroup>
+  <TargetFramework>net9.0</TargetFramework>
+  <AssemblyName>GasHub</AssemblyName>
+  <RootNamespace>GasHub</RootNamespace>
+</PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\Apilogger.cs" />
+    <Compile Remove="Services\Authlogger.cs" />
+    <Compile Remove="Services\Apilogger.cs" />
+    <Compile Remove="Services\Authlogger.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.Cng" Version="5.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Csp" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.9" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SQLDATA\" />
+  </ItemGroup>
+
+<ItemGroup>
+  <None Update="SQLDATA\gashub.db">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>

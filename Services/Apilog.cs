@@ -1,4 +1,4 @@
-using GasHub.Models;
+using Gas.Models;
 
 namespace Enterpriseservices
 {
@@ -9,7 +9,7 @@ namespace Enterpriseservices
 
         public static void logapi(string apiname, string apinumber, string eptype, int hashid, string parameterlist, string apiresult)
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 var logEntry = new Apilog
                 {
@@ -21,7 +21,7 @@ namespace Enterpriseservices
                     Apiresult = apiresult
                 };
 
-                context.Apilogs.Add(logEntry);
+                //context.Apilogs.Add(logEntry);
                 context.SaveChanges();
                 return;
             }

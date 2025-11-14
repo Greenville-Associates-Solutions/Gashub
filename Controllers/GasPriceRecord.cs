@@ -3,15 +3,22 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mail;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using GasHub.Models;
-using GasHub.Data;
-using Microsoft.AspNetCore.Routing;
 using Enterpriseservices;
 using Microsoft.Extensions.WebEncoders.Testing;
 namespace Enterprise.Controllers;
+using Gas.Models;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.OpenApi.Models;
+using Enterpriseservices;
+using Microsoft.Extensions.WebEncoders.Testing;
+using Microsoft.AspNetCore.Builder;
+
+
+
 
 
 public static class GasPriceRecordEndpoints
@@ -28,7 +35,7 @@ public static class GasPriceRecordEndpoints
         {
            
 
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GET", 1, "Test", "Test");
                 return context.GasPriceRecords.ToList();
@@ -41,10 +48,10 @@ public static class GasPriceRecordEndpoints
         //[HttpGet]
         group.MapGet("/{id}", (int id) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "GETWITHID", 1, "Test", "Test"); 
-                return context.GasPriceRecords.Where(m => m.GasPriceRecordId == id).ToList();
+                return context.GasPriceRecords.Where(m => m.Id == id).ToList();
             }
         })
         .WithName("GetGasPriceRecordById")
@@ -53,14 +60,14 @@ public static class GasPriceRecordEndpoints
         //[HttpPut]
         group.MapPut("/{id}", async (int id, GasPriceRecord input) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
-                GasPriceRecord[] someGasPriceRecord = context.GasPriceRecords.Where(m => m.GasPriceRecordId == id).ToArray();
+                GasPriceRecord[] someGasPriceRecord = context.GasPriceRecords.Where(m => m.Id == id).ToArray();
                 context.GasPriceRecords.Attach(someGasPriceRecord[0]);
                 if (input.Description != null) someGasPriceRecord[0].Description = input.Description;
                 await context.SaveChangesAsync();
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "PUTWITHID", 1, "Test", "Test");
-                return TypedResults.Accepted("Updated ID:" + input.GasPriceRecordId);
+                return TypedResults.Accepted("Updated ID:" + input.Id);
             }
 
 
@@ -70,7 +77,7 @@ public static class GasPriceRecordEndpoints
 
         group.MapPost("/", async (GasPriceRecord input) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 Random rnd = new Random();
                 int dice = rnd.Next(1000, 10000000);
@@ -78,7 +85,7 @@ public static class GasPriceRecordEndpoints
                 context.GasPriceRecords.Add(input);
                 await context.SaveChangesAsync();
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "NEWRECORD", 1, "TEST", "TEST");
-                return TypedResults.Created("Created ID:" + input.GasPriceRecordId);
+                return TypedResults.Created("Created ID:" + input.Id);
             }
 
         })
@@ -87,10 +94,10 @@ public static class GasPriceRecordEndpoints
 
         group.MapDelete("/{id}", async (int id) =>
         {
-            using (var context = new GasHubContext())
+            using (var context = new GashubContext())
             {
                 //context.GasPriceRecords.Add(std);
-                GasPriceRecord[] someGasPriceRecords = context.GasPriceRecords.Where(m => m.GasPriceRecordId == id).ToArray();
+                GasPriceRecord[] someGasPriceRecords = context.GasPriceRecords.Where(m => m.Id == id).ToArray();
                 context.GasPriceRecords.Attach(someGasPriceRecords[0]);
                 context.GasPriceRecords.Remove(someGasPriceRecords[0]);
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "DELETEWITHID",1, "TEST", "TEST");

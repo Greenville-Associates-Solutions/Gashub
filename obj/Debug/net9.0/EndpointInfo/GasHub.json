@@ -1,0 +1,728 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "GasAPI",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Apilog": {
+      "get": {
+        "tags": [
+          "Apilog"
+        ],
+        "operationId": "GetAllApilogs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Apilog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Apilog"
+        ],
+        "operationId": "CreateApilog",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Apilog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/Apilog/{id}": {
+      "get": {
+        "tags": [
+          "Apilog"
+        ],
+        "operationId": "GetApilogById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Apilog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Apilog"
+        ],
+        "operationId": "UpdateApilog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Apilog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Apilog"
+        ],
+        "operationId": "DeleteApilog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Gashub": {
+      "get": {
+        "tags": [
+          "Gashub"
+        ],
+        "operationId": "GetAllGashubs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Gashub"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Gashub"
+        ],
+        "operationId": "CreateGashub",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gashub"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/Gashub/{id}": {
+      "get": {
+        "tags": [
+          "Gashub"
+        ],
+        "operationId": "GetGashubById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Gashub"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Gashub"
+        ],
+        "operationId": "UpdateGashub",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gashub"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Gashub"
+        ],
+        "operationId": "DeleteGashub",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GasPriceRecord": {
+      "get": {
+        "tags": [
+          "GasPriceRecord"
+        ],
+        "operationId": "GetAllGasPriceRecords",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GasPriceRecord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "GasPriceRecord"
+        ],
+        "operationId": "CreateGasPriceRecord",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GasPriceRecord"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/GasPriceRecord/{id}": {
+      "get": {
+        "tags": [
+          "GasPriceRecord"
+        ],
+        "operationId": "GetGasPriceRecordById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GasPriceRecord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GasPriceRecord"
+        ],
+        "operationId": "UpdateGasPriceRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GasPriceRecord"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "GasPriceRecord"
+        ],
+        "operationId": "DeleteGasPriceRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/LinuxConsole/{option}": {
+      "get": {
+        "tags": [
+          "LinuxConsole"
+        ],
+        "parameters": [
+          {
+            "name": "option",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Apilog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "apiname": {
+            "type": "string",
+            "nullable": true
+          },
+          "eptype": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameterlist": {
+            "type": "string",
+            "nullable": true
+          },
+          "apiresult": {
+            "type": "string",
+            "nullable": true
+          },
+          "hashid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "apinumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GasPriceRecord": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ticker1": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker2": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker3": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker4": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker5": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker6": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker7": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker8": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker9": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticker10": {
+            "type": "string",
+            "nullable": true
+          },
+          "price1": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price2": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price3": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price4": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price5": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price6": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price7": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price8": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price9": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price10": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "gasHubId": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gashub": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailState": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "mailCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipState": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipZip": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "glaccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "subAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyFax": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyCare": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Void": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    }
+  }
+}

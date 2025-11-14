@@ -1,0 +1,6 @@
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\GasHub.csproj.AssemblyReference.cache
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\GasHub.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\GasHub.AssemblyInfoInputs.cache
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\GasHub.AssemblyInfo.cs
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\GasHub.csproj.CoreCompileInputs.cache
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\obj\Debug\net9.00\GasHub.sourcelink.json
