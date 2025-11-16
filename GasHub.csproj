@@ -45,6 +45,13 @@
   </ItemGroup>
 
 <ItemGroup>
+  <!-- Copy all files in the DATA folder -->
+  <None Include="DATA\**\*" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+
+
+
+<ItemGroup>
   <None Update="SQLDATA\gashub.db">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </None>

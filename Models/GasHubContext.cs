@@ -14,6 +14,7 @@ public partial class GashubContext : DbContext
         : base(options)
     {
     }
+    public virtual DbSet<GasTickerPrice> GasTickerPrices { get; set; }
 
     public virtual DbSet<Apilog> Apilogs { get; set; }
 
@@ -80,9 +81,26 @@ public partial class GashubContext : DbContext
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("GLAccount");
             entity.Property(e => e.SubAccount).HasColumnType("VARCHAR(50)");
+            entity.Property(e => e.GasTicker).HasColumnType("TEXT");
         });
 
-        OnModelCreatingPartial(modelBuilder);
+       
+modelBuilder.Entity<GasTickerPrice>(entity =>
+{
+    entity.HasKey(e => e.Id);
+
+    entity.HasIndex(e => new { e.GasTicker, e.RecordDate })
+          .IsUnique();   // enforce one record per ticker per day
+
+    entity.Property(e => e.RecordDate)
+          .HasColumnType("DATE");
+
+    entity.Property(e => e.Price)
+          .HasColumnType("NUMERIC(10,4)")
+          .IsRequired();
+});
+
+    OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

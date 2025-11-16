@@ -58,4 +58,5 @@ app.MapControllers(); // ✅ ensures controllers are mapped
 app.MapGashubEndpoints();
 app.MapGasPriceRecordEndpoints();
 app.MapApilogEndpoints();
+app.MapGasTickerPriceEndpoints();
 app.Run();
