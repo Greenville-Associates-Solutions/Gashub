@@ -1,0 +1,28 @@
+CREATE TABLE GasPriceRecord (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    RecordDate DATE NOT NULL UNIQUE,
+    Ticker1 VARCHAR(10),
+    Ticker2 VARCHAR(10),
+    Ticker3 VARCHAR(10),
+    Ticker4 VARCHAR(10),
+    Ticker5 VARCHAR(10),
+    Ticker6 VARCHAR(10),
+    Ticker7 VARCHAR(10),
+    Ticker8 VARCHAR(10),
+    Ticker9 VARCHAR(10),
+    Ticker10 VARCHAR(10),
+    Price1 NUMERIC(10,4),
+    Price2 NUMERIC(10,4),
+    Price3 NUMERIC(10,4),
+    Price4 NUMERIC(10,4),
+    Price5 NUMERIC(10,4),
+    Price6 NUMERIC(10,4),
+    Price7 NUMERIC(10,4),
+    Price8 NUMERIC(10,4),
+    Price9 NUMERIC(10,4),
+    Price10 NUMERIC(10,4),
+    Description TEXT,
+    DailyAverage DECIMAL,
+    TickerTotals INT
+);
+ 

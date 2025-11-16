@@ -16,7 +16,8 @@ using Microsoft.OpenApi.Models;
 using Enterpriseservices;
 using Microsoft.Extensions.WebEncoders.Testing;
 using Microsoft.AspNetCore.Builder;
-
+using Microsoft.AspNetCore.Http.HttpResults;   // for TypedResults
+using Microsoft.AspNetCore.OpenApi;    
 
 
 
@@ -62,9 +63,16 @@ public static class GasTickerPriceEndpoints
         {
             using (var context = new GashubContext())
             {
-                GasTickerPrice[] someGasTickerPrice = context.GasTickerPrices.Where(m => m.Id == id).ToArray();
+                  GasTickerPrice[] someGasTickerPrice = context.GasTickerPrices.Where(m => m.Id == id).ToArray();
                 context.GasTickerPrices.Attach(someGasTickerPrice[0]);
+
                 if (input.Description != null) someGasTickerPrice[0].Description = input.Description;
+                if (input.GasTicker != null) someGasTickerPrice[0].GasTicker = input.GasTicker;
+
+                // value types can be updated directly
+                someGasTickerPrice[0].RecordDate = input.RecordDate;
+                someGasTickerPrice[0].Price = input.Price;
+
                 await context.SaveChangesAsync();
                 Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "PUTWITHID", 1, "Test", "Test");
                 return TypedResults.Accepted("Updated ID:" + input.Id);

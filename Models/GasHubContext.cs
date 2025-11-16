@@ -77,6 +77,8 @@ public partial class GashubContext : DbContext
                 .IsRequired()
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("CompanyID");
+            entity.Property(e => e.CompanyName)   // ✅ Map CompanyName
+                  .HasMaxLength(200);
             entity.Property(e => e.CompanyPhone).HasColumnType("VARCHAR(20)");
             entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.Glaccount)

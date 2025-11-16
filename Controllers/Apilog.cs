@@ -1,6 +1,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.HttpResults;   // for TypedResults
+using Microsoft.AspNetCore.OpenApi;    
 using System.Linq;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Mvc;
@@ -50,23 +53,39 @@ public static class ApilogEndpoints
         .WithName("GetApilogById")
         .WithOpenApi();
 
-        //[HttpPut]
-        group.MapPut("/{id}", async (int id, Apilog input) =>
+       group.MapPut("/api/apilog/{id}", async (int id, Apilog input) =>
         {
-            using (var context = new GashubContext())
-            {
-                Apilog[] someApilog = context.Apilogs.Where(m => m.Id == id).ToArray();
-                context.Apilogs.Attach(someApilog[0]);
-                if (input.Description != null) someApilog[0].Description = input.Description;
-                await context.SaveChangesAsync();
-                Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "PUTWITHID", 1, "Test", "Test");
-                return TypedResults.Accepted("Updated ID:" + input.Id);
-            }
+        using (var context = new GashubContext())
+        {
+        Apilog[] someApilog = context.Apilogs.Where(m => m.Id == id).ToArray();
+        context.Apilogs.Attach(someApilog[0]);
 
+        if (input.Description != null) someApilog[0].Description = input.Description;
+        if (input.Apiname != null) someApilog[0].Apiname = input.Apiname;
+        if (input.Eptype != null) someApilog[0].Eptype = input.Eptype;
+        if (input.Parameterlist != null) someApilog[0].Parameterlist = input.Parameterlist;
+        if (input.Apiresult != null) someApilog[0].Apiresult = input.Apiresult;
+        if (input.Apinumber != null) someApilog[0].Apinumber = input.Apinumber;
 
-        })
-        .WithName("UpdateApilog")
-        .WithOpenApi();
+        // numeric field can be updated directly
+        someApilog[0].Hashid = input.Hashid;
+
+        await context.SaveChangesAsync();
+        Enterpriseservices.ApiLogger.logapi(
+            Enterpriseservices.Globals.ControllerAPIName,
+            Enterpriseservices.Globals.ControllerAPINumber,
+            "PUTWITHID",
+            1,
+            "Test",
+            "Test"
+        );
+
+        return TypedResults.Accepted("Updated ID:" + input.Id);
+    }
+})
+.WithName("UpdateApilog")
+.WithOpenApi();
+
 
         group.MapPost("/", async (Apilog input) =>
         {

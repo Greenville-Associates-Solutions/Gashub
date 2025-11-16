@@ -60,15 +60,55 @@ public static class GasPriceRecordEndpoints
         //[HttpPut]
         group.MapPut("/{id}", async (int id, GasPriceRecord input) =>
         {
-            using (var context = new GashubContext())
-            {
-                GasPriceRecord[] someGasPriceRecord = context.GasPriceRecords.Where(m => m.Id == id).ToArray();
-                context.GasPriceRecords.Attach(someGasPriceRecord[0]);
-                if (input.Description != null) someGasPriceRecord[0].Description = input.Description;
-                await context.SaveChangesAsync();
-                Enterpriseservices.ApiLogger.logapi(Enterpriseservices.Globals.ControllerAPIName, Enterpriseservices.Globals.ControllerAPINumber, "PUTWITHID", 1, "Test", "Test");
-                return TypedResults.Accepted("Updated ID:" + input.Id);
-            }
+           using (var context = new GashubContext())
+    {
+        GasPriceRecord[] someGasPriceRecord = context.GasPriceRecords.Where(m => m.Id == id).ToArray();
+        context.GasPriceRecords.Attach(someGasPriceRecord[0]);
+
+        if (input.Description != null) someGasPriceRecord[0].Description = input.Description;
+
+        // ✅ Tickers (strings only if not null)
+        if (input.Ticker1 != null) someGasPriceRecord[0].Ticker1 = input.Ticker1;
+        if (input.Ticker2 != null) someGasPriceRecord[0].Ticker2 = input.Ticker2;
+        if (input.Ticker3 != null) someGasPriceRecord[0].Ticker3 = input.Ticker3;
+        if (input.Ticker4 != null) someGasPriceRecord[0].Ticker4 = input.Ticker4;
+        if (input.Ticker5 != null) someGasPriceRecord[0].Ticker5 = input.Ticker5;
+        if (input.Ticker6 != null) someGasPriceRecord[0].Ticker6 = input.Ticker6;
+        if (input.Ticker7 != null) someGasPriceRecord[0].Ticker7 = input.Ticker7;
+        if (input.Ticker8 != null) someGasPriceRecord[0].Ticker8 = input.Ticker8;
+        if (input.Ticker9 != null) someGasPriceRecord[0].Ticker9 = input.Ticker9;
+        if (input.Ticker10 != null) someGasPriceRecord[0].Ticker10 = input.Ticker10;
+
+        // ✅ Prices (numeric, overwrite directly)
+        someGasPriceRecord[0].Price1 = input.Price1;
+        someGasPriceRecord[0].Price2 = input.Price2;
+        someGasPriceRecord[0].Price3 = input.Price3;
+        someGasPriceRecord[0].Price4 = input.Price4;
+        someGasPriceRecord[0].Price5 = input.Price5;
+        someGasPriceRecord[0].Price6 = input.Price6;
+        someGasPriceRecord[0].Price7 = input.Price7;
+        someGasPriceRecord[0].Price8 = input.Price8;
+        someGasPriceRecord[0].Price9 = input.Price9;
+        someGasPriceRecord[0].Price10 = input.Price10;
+
+        // ✅ Other fields
+        someGasPriceRecord[0].RecordDate = input.RecordDate;
+        someGasPriceRecord[0].DailyAverage = input.DailyAverage;
+        someGasPriceRecord[0].TickerTotals = input.TickerTotals;
+
+        await context.SaveChangesAsync();
+
+        Enterpriseservices.ApiLogger.logapi(
+            Enterpriseservices.Globals.ControllerAPIName,
+            Enterpriseservices.Globals.ControllerAPINumber,
+            "PUTWITHID",
+            1,
+            "Test",
+            "Test"
+        );
+
+        return TypedResults.Accepted("Updated ID:" + input.Id);
+    }
 
 
         })

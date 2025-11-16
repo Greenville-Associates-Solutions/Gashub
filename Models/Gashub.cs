@@ -8,6 +8,9 @@ public partial class Gashub
     public int Id { get; set; }
 
     public string CompanyId { get; set; }
+
+    public string CompanyName { get; set; }
+    
     public string GasTicker { get; set; }
 
     public string MailAddress1 { get; set; }

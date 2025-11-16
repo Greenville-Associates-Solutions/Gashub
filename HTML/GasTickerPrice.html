@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GasTickerPrice Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: black; width: 100%}
+    .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; margin-left: 30px }
+    .legend-item { cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .legend-swatch { width: 12px; height: 12px; border-radius: 2px; }
+    .legend-item.inactive { opacity: 0.4; }
+    svg { width: 100%; height: 500px; }
+    .axis path, .axis line { stroke: #777; }
+    .tooltip {
+      position: absolute; background: #333; color: #fff; padding: 6px 8px;
+      border-radius: 4px; font-size: 12px; pointer-events: none; opacity: 0;
+    }
+    .container
+    {
+      position: relative;
+      margin: 0 auto;
+      height: 800px;
+      width: 1200px;
+      background-color: lightgrey;
+      border: 2px solid black;
+    }
+
+    h1, p
+    {
+    margin-left: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>GasTickerPrice Chart</h1>
+    <p>Data source: <code>http://localhost:59503/api/GasTickerPrice</code></p>
+
+    <div class="legend" id="legend"></div>
+    <svg id="chart"></svg>
+    <div class="tooltip" id="tooltip"></div>
+  </div>
+  <script>
+    const API_URL = 'http://localhost:59503/api/GasTickerPrice';
+    const colors = d3.schemeCategory10; // 10 distinct colors
+
+    async function fetchData() {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error('Failed to fetch data');
+      return res.json();
+    }
+
+    function transformData(records) {
+      // Parse dates
+      records.forEach(r => r.date = new Date(r.recordDate));
+
+      // Group by gasTicker
+      const grouped = d3.group(records, d => d.gasTicker);
+
+      return Array.from(grouped, ([name, values]) => ({
+        name,
+        values: values.sort((a, b) => a.date - b.date)
+      }));
+    }
+
+    function renderChart(series) {
+      const svg = d3.select('#chart');
+      const width = svg.node().clientWidth;
+      const height = svg.node().clientHeight;
+      const margin = { top: 20, right: 120, bottom: 40, left: 60 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+
+      svg.selectAll('*').remove();
+      const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+      const allDates = series.flatMap(s => s.values.map(v => v.date));
+      const allPrices = series.flatMap(s => s.values.map(v => v.price));
+
+      const x = d3.scaleTime().domain(d3.extent(allDates)).range([0, innerWidth]);
+      const y = d3.scaleLinear().domain([d3.min(allPrices)*0.95, d3.max(allPrices)*1.05]).range([innerHeight, 0]);
+
+      const xAxis = d3.axisBottom(x).ticks(6);
+      const yAxis = d3.axisLeft(y).ticks(8);
+
+      g.append('g').attr('transform', `translate(0,${innerHeight})`).call(xAxis);
+      g.append('g').call(yAxis);
+
+      const line = d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.price))
+        .curve(d3.curveMonotoneX);
+
+      const tooltip = d3.select('#tooltip');
+
+      series.forEach((s, idx) => {
+        const color = colors[idx % colors.length];
+
+        g.append('path')
+          .datum(s.values)
+          .attr('fill', 'none')
+          .attr('stroke', color)
+          .attr('stroke-width', 2)
+          .attr('class', `series series-${idx}`)
+          .attr('d', line);
+
+        g.append('g')
+          .selectAll('circle')
+          .data(s.values)
+          .join('circle')
+          .attr('r', 3)
+          .attr('fill', color)
+          .attr('cx', d => x(d.date))
+          .attr('cy', d => y(d.price))
+          .on('mouseenter', (event, d) => {
+            tooltip.style('opacity', 1)
+              .html(`<strong>${s.name}</strong><br>${d.date.toISOString().slice(0,10)}<br>Price: ${d.price}`)
+              .style('left', (event.pageX) + 'px')
+              .style('top', (event.pageY - 20) + 'px');
+          })
+          .on('mouseleave', () => tooltip.style('opacity', 0));
+      });
+
+      // Legend
+      const legend = d3.select('#legend');
+      legend.selectAll('*').remove();
+
+      const items = legend.selectAll('.legend-item')
+        .data(series.map((s, idx) => ({ idx, name: s.name, color: colors[idx % colors.length], active: true })))
+        .join('div')
+        .attr('class', 'legend-item')
+        .on('click', (event, item) => {
+          item.active = !item.active;
+          d3.select(event.currentTarget).classed('inactive', !item.active);
+          g.selectAll(`.series-${item.idx}`).style('display', item.active ? null : 'none');
+          g.selectAll(`.points-${item.idx}`).style('display', item.active ? null : 'none');
+        });
+
+      items.append('span').attr('class', 'legend-swatch').style('background', d => d.color);
+      items.append('span').text(d => d.name);
+    }
+
+    (async function init() {
+      try {
+        const raw = await fetchData();
+        const series = transformData(raw);
+        renderChart(series);
+      } catch (err) {
+        console.error(err);
+        d3.select('#chart').append('text').text('Failed to load data').attr('x', 20).attr('y', 30).attr('fill', 'red');
+      }
+    })();
+  </script>
+</body>
+</html>

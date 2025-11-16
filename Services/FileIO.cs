@@ -32,7 +32,12 @@ namespace Enterpriseservices
             }
         }
 
-        public static string ProcessCsvFilesToJson()
+
+        // -------------------------------
+        // Function 2: Process CSV Files into JSON Format
+        // -------------------------------
+
+ public static string ProcessCsvFilesToJson()
 {
     try
     {
@@ -66,6 +71,7 @@ namespace Enterpriseservices
             };
 
             int tickerIndex = 1;
+            var prices = new List<decimal>();
 
             foreach (var line in lines)
             {
@@ -94,8 +100,15 @@ namespace Enterpriseservices
                         case 10: record.Ticker10 = ticker; record.Price10 = price; break;
                     }
                     tickerIndex++;
+
+                    if (price.HasValue)
+                        prices.Add(price.Value);
                 }
             }
+
+            // ✅ Calculate new fields
+            record.TickerTotals = prices.Count;
+            record.DailyAverage = prices.Count > 0 ? prices.Average() : null;
 
             records.Add(record);
         }
@@ -108,6 +121,9 @@ namespace Enterpriseservices
         throw;
     }
 }
+
+
+
         // -------------------------------
         // Function 3: PostJsonToDatabase
         // -------------------------------
