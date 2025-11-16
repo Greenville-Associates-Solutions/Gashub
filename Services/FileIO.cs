@@ -32,75 +32,82 @@ namespace Enterpriseservices
             }
         }
 
-        // -------------------------------
-        // Function 2: ProcessCsvFilesToJson
-        // -------------------------------
         public static string ProcessCsvFilesToJson()
+{
+    try
+    {
+        string dataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DATA");
+        var files = Directory.GetFiles(dataPath, "*.csv");
+
+        var records = new List<GasPriceRecord>();
+
+        foreach (var file in files)
         {
-            try
+            var fileName = Path.GetFileNameWithoutExtension(file); // e.g. gas_prices_2024_11_01
+            DateTime recordDate = DateTime.Now;
+
+            // Try to parse date from filename
+            var parts = fileName.Split('_'); // ["gas","prices","2024","11","01"]
+            if (parts.Length >= 5 &&
+                int.TryParse(parts[2], out int year) &&
+                int.TryParse(parts[3], out int month) &&
+                int.TryParse(parts[4], out int day))
             {
-                string dataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DATA");
-                var files = Directory.GetFiles(dataPath, "*.csv");
+                recordDate = new DateTime(year, month, day);
+            }
 
-                var records = new List<GasPriceRecord>();
+            var lines = File.ReadAllLines(file).Skip(1); // skip header
 
-                foreach (var file in files)
+            var record = new GasPriceRecord
+            {
+                RecordDate = recordDate,
+                Description = $"Imported from {Path.GetFileName(file)}",
+                GasHubId = fileName
+            };
+
+            int tickerIndex = 1;
+
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                var partsLine = line.Split(';');
+                string ticker = partsLine.Length > 0 ? partsLine[0].Trim() : null;
+                decimal? price = null;
+
+                if (partsLine.Length > 1 && decimal.TryParse(partsLine[1], out var p))
+                    price = p;
+
+                if (!string.IsNullOrEmpty(ticker))
                 {
-                    var lines = File.ReadAllLines(file).Skip(1); // skip header
-
-                    var record = new GasPriceRecord
+                    switch (tickerIndex)
                     {
-                        RecordDate = DateTime.Now,
-                        Description = $"Imported from {Path.GetFileName(file)}",
-                        GasHubId = Path.GetFileNameWithoutExtension(file)
-                    };
-
-                    int tickerIndex = 1;
-
-                    foreach (var line in lines)
-                    {
-                        if (string.IsNullOrWhiteSpace(line)) continue;
-
-                        // Split on semicolon
-                        var parts = line.Split(';');
-
-                        string ticker = parts.Length > 0 ? parts[0].Trim() : null;
-                        decimal? price = null;
-
-                        if (parts.Length > 1 && decimal.TryParse(parts[1], out var p))
-                            price = p;
-
-                        if (!string.IsNullOrEmpty(ticker))
-                        {
-                            switch (tickerIndex)
-                            {
-                                case 1: record.Ticker1 = ticker; record.Price1 = price; break;
-                                case 2: record.Ticker2 = ticker; record.Price2 = price; break;
-                                case 3: record.Ticker3 = ticker; record.Price3 = price; break;
-                                case 4: record.Ticker4 = ticker; record.Price4 = price; break;
-                                case 5: record.Ticker5 = ticker; record.Price5 = price; break;
-                                case 6: record.Ticker6 = ticker; record.Price6 = price; break;
-                                case 7: record.Ticker7 = ticker; record.Price7 = price; break;
-                                case 8: record.Ticker8 = ticker; record.Price8 = price; break;
-                                case 9: record.Ticker9 = ticker; record.Price9 = price; break;
-                                case 10: record.Ticker10 = ticker; record.Price10 = price; break;
-                            }
-                            tickerIndex++;
-                        }
+                        case 1: record.Ticker1 = ticker; record.Price1 = price; break;
+                        case 2: record.Ticker2 = ticker; record.Price2 = price; break;
+                        case 3: record.Ticker3 = ticker; record.Price3 = price; break;
+                        case 4: record.Ticker4 = ticker; record.Price4 = price; break;
+                        case 5: record.Ticker5 = ticker; record.Price5 = price; break;
+                        case 6: record.Ticker6 = ticker; record.Price6 = price; break;
+                        case 7: record.Ticker7 = ticker; record.Price7 = price; break;
+                        case 8: record.Ticker8 = ticker; record.Price8 = price; break;
+                        case 9: record.Ticker9 = ticker; record.Price9 = price; break;
+                        case 10: record.Ticker10 = ticker; record.Price10 = price; break;
                     }
-
-                    records.Add(record);
+                    tickerIndex++;
                 }
+            }
 
-                return JsonSerializer.Serialize(records);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error(2): Function 2 + {ex.InnerException?.Message ?? ex.Message}");
-                throw;
-            }
+            records.Add(record);
         }
 
+        return JsonSerializer.Serialize(records);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error(2): Function 2 + {ex.InnerException?.Message ?? ex.Message}");
+        throw;
+    }
+}
         // -------------------------------
         // Function 3: PostJsonToDatabase
         // -------------------------------
@@ -237,46 +244,5 @@ namespace Enterpriseservices
             }
         }
 
-       /* // -------------------------------
-        // Pipeline Helper: Option 6 (Functions 1,2,4)
-        // -------------------------------
-        public static (int FileCount, List<string> FileNames) RunPipeline_1_2_4()
-        {
-            try
-            {
-                var files = GetDataFiles();
-                var jsonOutput = ProcessCsvFilesToJson();
-                InsertNewTickersIntoGashub(jsonOutput);
-
-                Console.WriteLine("Pipeline 6 complete (Functions 1,2,4)");
-                return files;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error(6): Pipeline 6 + {ex.InnerException?.Message ?? ex.Message}");
-                throw;
-            }
-        }
-
-        // -------------------------------
-        // Pipeline Helper: Option 7 (Functions 1,2,5)
-        // -------------------------------
-        public static (int FileCount, List<string> FileNames) RunPipeline_1_2_5()
-        {
-            try
-            {
-                var files = GetDataFiles();
-                var jsonOutput = ProcessCsvFilesToJson();
-                PopulateGasTickerPrice(jsonOutput);
-
-                Console.WriteLine("Pipeline 7 complete (Functions 1,2,5)");
-                return files;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error(7): Pipeline 7 + {ex.InnerException?.Message ?? ex.Message}");
-                throw;
-            }
-        }*/
     }
 }
