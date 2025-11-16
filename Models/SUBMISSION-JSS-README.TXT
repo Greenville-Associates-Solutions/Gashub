@@ -14,3 +14,4 @@ This is a Reverse Engineered Database in SQLLITE.
 12)Each Ticker Symbol is then being loaded into Gashub by a seperate process which checks for a Unique Ticker-Company Name combination.
 13) We built a single HTML file to show the results from two calls 1) To GasHub to get all of the Tickers in the System 2) To GasTickerPrice which shows the history for Prices.
 14) Apis are at 1)/api/Gashub 2) /api/GasTickerPrice 3) /api/GasPriceRecord (Single Day Records) 4) /api/Apilog 5) /api/GasActions which does all the CLI commands in GridAction form.
+15) SwaggerPDF Documentation in SwaggerDocs.

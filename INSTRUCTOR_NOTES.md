@@ -39,9 +39,9 @@ This extra credit assignment is designed to test students' understanding of C# f
 ## Extension Opportunities
 
 Bonus challenges:
-- Implement data validation and business rules
-- Add logging using ILogger
-- Implement configuration using appsettings.json
+- Implement data validation and business rules [WE ARE CHECKING FOR UNIQUE COMBINATIONS OF TICKER, AND DATE ON IMPORT]
+- Add logging using ILogger [THIS IS DONE VIA APILOGGER - A CUSTOM TOOLSET BUILT BY JSS]
+- Implement configuration using appsettings.json [COMPLETE]
 
 ## Prerequisites
 Students should be comfortable with:
