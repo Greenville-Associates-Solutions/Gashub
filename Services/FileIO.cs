@@ -189,60 +189,73 @@ namespace Enterpriseservices
         // -------------------------------
         // Function 5: PopulateGasTickerPrice
         // -------------------------------
-        public static void PopulateGasTickerPrice(string jsonOutput)
+       public static void PopulateGasTickerPrice(string jsonOutput)
+{
+    try
+    {
+        using var context = new GashubContext();
+
+        var records = JsonSerializer.Deserialize<List<GasPriceRecord>>(jsonOutput);
+        if (records == null || !records.Any())
+            return;
+
+        foreach (var rec in records)
         {
-            try
+            var tickerPrices = new List<GasTickerPrice>();
+
+            void AddTicker(string? ticker, decimal? price)
             {
-                using var context = new GashubContext();
-
-                var records = JsonSerializer.Deserialize<List<GasPriceRecord>>(jsonOutput);
-                if (records == null || !records.Any())
-                    return;
-
-                var tickerPrices = new List<GasTickerPrice>();
-
-                foreach (var rec in records)
+                if (!string.IsNullOrEmpty(ticker) && price.HasValue)
                 {
-                    if (!string.IsNullOrEmpty(rec.Ticker1) && rec.Price1.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker1, Price = rec.Price1.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker2) && rec.Price2.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker2, Price = rec.Price2.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker3) && rec.Price3.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker3, Price = rec.Price3.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker4) && rec.Price4.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker4, Price = rec.Price4.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker5) && rec.Price5.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker5, Price = rec.Price5.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker6) && rec.Price6.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker6, Price = rec.Price6.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker7) && rec.Price7.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker7, Price = rec.Price7.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker8) && rec.Price8.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker8, Price = rec.Price8.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker9) && rec.Price9.HasValue)
-                        tickerPrices.Add(new GasTickerPrice { GasTicker = rec.Ticker9, Price = rec.Price9.Value, RecordDate = rec.RecordDate.Date, Description = rec.Description });
-                    if (!string.IsNullOrEmpty(rec.Ticker10) && rec.Price10.HasValue)
-                        tickerPrices.Add(new GasTickerPrice 
-                        { 
-                            GasTicker = rec.Ticker10, 
-                            Price = rec.Price10.Value, 
-                            RecordDate = rec.RecordDate.Date, 
-                            Description = rec.Description 
-                        });
+                    tickerPrices.Add(new GasTickerPrice
+                    {
+                        GasTicker = ticker,
+                        Price = price.Value,
+                        RecordDate = rec.RecordDate.Date,
+                        Description = rec.Description
+                    });
                 }
-
-                // Insert into GasTickerPrice
-                context.GasTickerPrices.AddRange(tickerPrices);
-                foreach (var tp in tickerPrices)
-                Console.WriteLine($"Attempting insert: {tp.GasTicker} {tp.RecordDate}");
-                context.SaveChanges();
             }
-            catch (Exception ex)
+
+            // Collect tickers for this record only
+            AddTicker(rec.Ticker1, rec.Price1);
+            AddTicker(rec.Ticker2, rec.Price2);
+            AddTicker(rec.Ticker3, rec.Price3);
+            AddTicker(rec.Ticker4, rec.Price4);
+            AddTicker(rec.Ticker5, rec.Price5);
+            AddTicker(rec.Ticker6, rec.Price6);
+            AddTicker(rec.Ticker7, rec.Price7);
+            AddTicker(rec.Ticker8, rec.Price8);
+            AddTicker(rec.Ticker9, rec.Price9);
+            AddTicker(rec.Ticker10, rec.Price10);
+
+            // Insert each ticker for this record
+            foreach (var tp in tickerPrices)
             {
-                Console.WriteLine($"Error(5): Function 5 + {ex.InnerException?.Message ?? ex.Message}");
-                throw;
+                Console.WriteLine($"Attempting insert: {tp.GasTicker} {tp.RecordDate}");
+
+                // Check if already exists to avoid UNIQUE constraint error
+                var exists = context.GasTickerPrices
+                    .Any(x => x.GasTicker == tp.GasTicker && x.RecordDate == tp.RecordDate);
+
+                if (!exists)
+                {
+                    context.GasTickerPrices.Add(tp);
+                    context.SaveChanges(); // commit immediately for this ticker
+                }
+                else
+                {
+                    Console.WriteLine($"Skipped duplicate: {tp.GasTicker} {tp.RecordDate}");
+                }
             }
         }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error(5): Function 5 + {ex.InnerException?.Message ?? ex.Message}");
+        throw;
+    }
+}
 
     }
 }
