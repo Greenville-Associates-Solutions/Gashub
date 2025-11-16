@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GasHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f63881cf04752bcc741e423787edc4c2ba08329d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5f82ee0e6e05d4f5778ed96b70c3e1cea2b04b1")]
 [assembly: System.Reflection.AssemblyProductAttribute("GasHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GasHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
