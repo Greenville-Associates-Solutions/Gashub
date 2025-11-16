@@ -49,6 +49,10 @@ public partial class GasPriceRecord
 
     public decimal? Price10 { get; set; }
 
+    public decimal? DailyAverage { get; set; }
+
+    public int? TickerTotals { get; set; }
+
     public string GasHubId { get; set; }
 
     public string Description { get; set; }

@@ -62,6 +62,8 @@ public partial class GashubContext : DbContext
             entity.Property(e => e.Ticker7).HasColumnType("VARCHAR(10)");
             entity.Property(e => e.Ticker8).HasColumnType("VARCHAR(10)");
             entity.Property(e => e.Ticker9).HasColumnType("VARCHAR(10)");
+            entity.Property(e => e.DailyAverage);
+            entity.Property(e => e.TickerTotals);
         });
 
         modelBuilder.Entity<Gashub>(entity =>
