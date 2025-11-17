@@ -273,5 +273,46 @@ namespace Enterpriseservices
     }
 }
 
+// -------------------------------
+// Function 6: WriteProcessed
+// -------------------------------
+    public static void WriteProcessed(string filepath)
+    {
+    try
+    {
+        using var context = new GashubContext();
+
+        var fileName = Path.GetFileNameWithoutExtension(filepath);
+        DateTime fileDate = DateTime.Now;
+
+        // Try to parse date from filename (e.g. gas_prices_2024_11_01.csv)
+        var parts = fileName.Split('_');
+        if (parts.Length >= 5 &&
+            int.TryParse(parts[2], out int year) &&
+            int.TryParse(parts[3], out int month) &&
+            int.TryParse(parts[4], out int day))
+        {
+            fileDate = new DateTime(year, month, day);
+        }
+
+        var entry = new FilesProcessed
+        {
+            FilePath = filepath,          // full path passed in
+            FileDate = fileDate,          // extracted from filename
+            ProcessedDateTime = DateTime.Now // actual processing time
+        };
+
+        context.FilesProcessed.Add(entry);
+        context.SaveChanges();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error(6): Function 6 + {ex.InnerException?.Message ?? ex.Message}");
+        throw;
+    }
+    }
+
+       
+
     }
 }
