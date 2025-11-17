@@ -16,6 +16,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks; // <-- this brings Task into scope
 using System.Threading.Tasks;
+using SecurityTools;
 namespace GasPriceAnalysis;
 class Program
 {
@@ -45,8 +46,9 @@ class Program
 
         builder.Services.AddDbContext<GashubContext>(options =>
             options.UseSqlite(connectionString));
-
+        
         var app = builder.Build();
+        app.UseMiddleware<SwaggerAuthMiddleware>();
 
         // Middleware pipeline
         app.UseCors("UnifiedCors");

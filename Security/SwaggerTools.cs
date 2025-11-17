@@ -2,12 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace SecurityTools;
 public class SwaggerAuthMiddleware
 {
-/* 
-     * private readonly RequestDelegate _next;
+
+     private readonly RequestDelegate _next;
 
         public SwaggerAuthMiddleware(RequestDelegate next)
         {
@@ -41,5 +45,5 @@ public class SwaggerAuthMiddleware
             }
 
             await _next.Invoke(context);
-        }*/
+        }
 }

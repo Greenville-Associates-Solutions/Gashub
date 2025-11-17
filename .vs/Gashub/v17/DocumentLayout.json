@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\services\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:services\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\security\\swaggertools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:security\\swaggertools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\controllers\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:controllers\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Apilog.cs",
-              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\Apilog.cs",
-              "RelativeDocumentMoniker": "Services\\Apilog.cs",
-              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\Apilog.cs",
-              "RelativeToolTip": "Services\\Apilog.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBcAAAAQAAAAAAAAAA==",
+              "Title": "SwaggerTools.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Security\\SwaggerTools.cs",
+              "RelativeDocumentMoniker": "Security\\SwaggerTools.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Security\\SwaggerTools.cs",
+              "RelativeToolTip": "Security\\SwaggerTools.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAswA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T19:33:05.806Z",
+              "WhenOpened": "2025-11-17T19:41:25.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Apilog.cs",
-              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\Apilog.cs",
-              "RelativeDocumentMoniker": "Controllers\\Apilog.cs",
-              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\Apilog.cs",
-              "RelativeToolTip": "Controllers\\Apilog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T19:30:29.09Z",
+              "WhenOpened": "2025-11-17T19:40:03.289Z",
               "EditorCaption": ""
             }
           ]
