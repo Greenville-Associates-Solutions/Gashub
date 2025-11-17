@@ -1,0 +1,6 @@
+11/14 - Project Initiation, Code Base Review, Requirements for the Project.
+11/15 - Build a REST only application with a Reverse Engineered System, with an Actions Controller. Processed First Batches of Files (8+ Hours of Time)
+11/16 - Determined that a CLI, and RESTAPI can run on the same Application and Thus updated Program to do both. (8+ Hours of Time)
+11/16 - System Complete and Running. Attempt at Demo was done and recorded. Issue is the system had preprocessed data in it, so the recorded demo was probably not sufficient proof to success.
+11/17 - Updated I/O to included saving Processed Records, and JSONS. This added a 5th table to the system, and a new model, and context updates.
+11/17 - Documented the system and update the menu system.
