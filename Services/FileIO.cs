@@ -13,6 +13,9 @@ namespace Enterpriseservices
         // -------------------------------
         // Function 1: GetDataFiles
         // -------------------------------
+        // Inputs: This Function Reads the Files in the Data Directory which might need to be processed.
+        // Returns: It Returns the total number of files in the directory with a .csv extension, and their file names as a List.
+        
         public static (int FileCount, List<string> FileNames) GetDataFiles()
         {
             try
@@ -36,6 +39,10 @@ namespace Enterpriseservices
         // -------------------------------
         // Function 2: Process CSV Files into JSON Format
         // -------------------------------
+        // Inputs: This Function Reads the Files in the Data Directory which might need to be processed.
+        // Actions: This function flattens each .CSV into a JSON record, and writes the JSON to disk, and updates the Processed Table.
+        // Returns: A Single JSON record.
+        
 
 public static string ProcessCsvFilesToJson()
 {
@@ -167,6 +174,10 @@ public static string ProcessCsvFilesToJson()
         // -------------------------------
         // Function 3: PostJsonToDatabase
         // -------------------------------
+      // Inputs: This Function takes a JSON as a call. 
+      // Actions: This Function writes data to a table for Price Records. Each Record in the JSON is a Record to be written
+      // Returns: This Function Returns Nothing.
+        
         public static void PostJsonToDatabase(string jsonOutput)
         {
             try
@@ -190,6 +201,11 @@ public static string ProcessCsvFilesToJson()
         // -------------------------------
         // Function 4: InsertNewTickersIntoGashub
         // -------------------------------
+      // Inputs: This Function takes a JSON as a call. 
+      // Actions: This Function checks the Ticker Symbol, and if it doesnt exist in the Gashub Table Creates a New Record. If the Company sells a new product it will be updated automatically.
+      // Returns: This Function Returns Nothing But saves the Data in a Gashub Table.
+
+        
         public static void InsertNewTickersIntoGashub(string jsonOutput)
         {
             try
@@ -245,6 +261,11 @@ public static string ProcessCsvFilesToJson()
         // -------------------------------
         // Function 5: PopulateGasTickerPrice
         // -------------------------------
+      // Inputs: This Function takes a JSON as a call. 
+      // Actions: This function takes price data and inserts a record for each Ticker, and Price Combination.
+      // Returns: This Function Returns Nothing But saves the Data in a GasPriceRecord Table which then can be used to Graph Prices per Ticker. 
+
+        
        public static void PopulateGasTickerPrice(string jsonOutput)
 {
     try
@@ -316,6 +337,10 @@ public static string ProcessCsvFilesToJson()
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function 6: WriteProcessed - This Function writes to a Logger all the files Processed by Function2, and 7 below into a table. This could be used to screen reprocessed files.
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Inputs: This Function takes a filepath as an argument
+// Actions: This function writes the filepath into the Processed Table so that Input Actions Can be Tracked.
+// Returns: This Function Returns Nothing But saves the Data in a FilesProcessed Table which then can be used to Graph Prices per Ticker. 
+        
     public static void WriteProcessed(string filepath)
     {
     try
@@ -355,10 +380,13 @@ public static string ProcessCsvFilesToJson()
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function 7: This function takes a Date Year as a parameter, and processes all the .CSV files to JSON which match the date year. Its a more sophisticated version of Function2 which processes all records in the directory.
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    / -------------------------------
+/ -------------------------------
 // Function 7: ProcessCsvFilesToJsonByYear
 // -------------------------------
+// Inputs: This Function takes a Calendar Year as its Parameters 
+// Actions: This Processes all the files and writes a .json to the directory, copies the processed file to the PROCESSED SUB DIRECTORY.
+// Returns: This Function Returns The Processed JSON.
+    
 public static string ProcessCsvFilesToJsonByYear(int yearFilter)
 {
     try
