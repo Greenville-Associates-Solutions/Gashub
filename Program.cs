@@ -97,6 +97,7 @@ class Program
                     Console.WriteLine("  tickhist - Show Ticker Prices Per Day");
                     Console.WriteLine("  initall  - Update DB from PriceData");
                     Console.WriteLine("  erasedb  - Delete All Existing Records - Note Doesnt Reset AutoIncrement Ids in SQLITE");
+                    Console.WriteLine("  unitapi  - APILogger UnitTest");
                     Console.WriteLine("  exit   - Quit CLI");
                     break;
 
@@ -126,6 +127,10 @@ class Program
                 
                 case "erasedb":
                     CLISupport.EraseDB();
+                    break;
+
+                case "unitapi":
+                    ApiLogHelper.InsertDummyRecord();
                     break;
                 
                 case "exit":
