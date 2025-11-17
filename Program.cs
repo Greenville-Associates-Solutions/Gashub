@@ -89,12 +89,13 @@ class Program
             {
                 case "help":
                     Console.WriteLine("Available commands:");
-                    Console.WriteLine("  hubs     - Show all gas hubs");
                     Console.WriteLine("  status   - Show API status");
+                    Console.WriteLine("  hubs     - Show all gas hubs");
                     Console.WriteLine("  prices   - Show Prices Per Day");
                     Console.WriteLine("  priceday - Show Prices For One Day");
                     Console.WriteLine("  tickhist - Show Ticker Prices Per Day");
                     Console.WriteLine("  initall  - Update DB from PriceData");
+                    Console.WriteLine("  erasedb  - Delete All Existing Records - Note Doesnt Reset AutoIncrement Ids in SQLITE");
                     Console.WriteLine("  exit   - Quit CLI");
                     break;
 
@@ -121,7 +122,11 @@ class Program
                 case "initall":
                     CLISupport.RunFullPipeline();
                     break;
-
+                
+                case "erasedb":
+                    CLISupport.EraseDB();
+                    break;
+                
                 case "exit":
                     Console.WriteLine("Exiting CLI...");
                     break;
