@@ -12,6 +12,9 @@ using Microsoft.Extensions.WebEncoders.Testing;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Builder;
 
+//THIS FILE HAS CRUD ENDPOINTS WHICH ARE GENERIC FOR THE FilesProcessed Table. (GET, PUT, POST, DELETE).
+//IT IS IDENTICAL TO THE FORM OF THE OTHER CONTROLLERS.
+
 namespace Enterprise.Controllers
 {
     public static class FilesProcessedEndpoints
