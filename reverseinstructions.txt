@@ -3,4 +3,4 @@
 dotnet ef dbcontext scaffold "Data Source=./SQLDATA/Gashub.db" Microsoft.EntityFrameworkCore.Sqlite -o Models --context-dir Data --no-build
 
 // TO OVERWRITE THE EXISTING CODE
-dotnet ef dbcontext scaffold "Data Source=./SQLDATA/Gashub.db" Microsoft.EntityFrameworkCore.Sqlite -o Models --context-dir Data --no-build --force
+dotnet ef dbcontext scaffold "Data Source=./SQLDATA/Gashub.db" Microsoft.EntityFrameworkCore.Sqlite -o Models --context-dir Models --context GashubContext --no-build --force

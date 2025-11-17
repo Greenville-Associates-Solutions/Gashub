@@ -22,7 +22,8 @@ namespace Enterprise.Controllers;
 
 public static class ApilogEndpoints
 {
-    
+
+ 
     public static void MapApilogEndpoints(this IEndpointRouteBuilder routes)
     {
         var group = routes.MapGroup("/api/Apilog").WithTags(nameof(Apilog));

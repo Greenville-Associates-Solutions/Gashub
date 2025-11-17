@@ -19,10 +19,14 @@ public class GasActionsController : ControllerBase
     private readonly string[] databaseNodes = { "10.144.0.100", "10.144.1.100", "10.144.2.100", "10.144.3.100", "10.144.4.100" };
     private readonly string[] webServerNodes = { "10.144.0.152", "10.144.1.151", "10.144.2.151", "10.144.3.151", "10.144.4.151" };
     private readonly string[] gashubNodes = { "Tulsa", "Austin", "Dallas", "OklahomaCity", "Phoenix" };
+  
 
     [HttpGet("{option}")]
     public IActionResult GetSystemInfo(int option)
     {
+        Enterpriseservices.Globals.ControllerAPIName = "ActionsController";
+        Enterpriseservices.Globals.ControllerAPINumber = "001";
+
         switch (option)
         {
             case 1: return ListGasHubs();  //Returns Sample Hub Data - Demo Only

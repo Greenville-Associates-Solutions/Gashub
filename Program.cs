@@ -1,19 +1,21 @@
+using Enterprise.Controllers;
+using Enterpriseservices;
 using Gas.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models; // ✅ Correct namespace
 using SecurityTools;
 using System;                // <-- this brings Console into scope
-using System.Threading.Tasks; // <-- this brings Task into scope
+using System.Linq;
 using System.Text;
 using System.Text.Json;
-using Enterprise.Controllers;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks; // <-- this brings Task into scope
 using System.Threading.Tasks;
-using System.Linq;
-using Enterpriseservices;
 namespace GasPriceAnalysis;
 class Program
 {
@@ -39,7 +41,10 @@ class Program
                       .AllowAnyHeader();
             });
         });
+        var connectionString = builder.Configuration.GetConnectionString("GashubConnection");
 
+        builder.Services.AddDbContext<GashubContext>(options =>
+            options.UseSqlite(connectionString));
 
         var app = builder.Build();
 
