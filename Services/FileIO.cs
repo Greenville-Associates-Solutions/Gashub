@@ -356,7 +356,10 @@ public static string ProcessCsvFilesToJson()
 // Function 7: This function takes a Date Year as a parameter, and processes all the .CSV files to JSON which match the date year. Its a more sophisticated version of Function2 which processes all records in the directory.
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-       public static string ProcessCsvFilesToJsonByYear(int yearFilter)
+    / -------------------------------
+// Function 7: ProcessCsvFilesToJsonByYear
+// -------------------------------
+public static string ProcessCsvFilesToJsonByYear(int yearFilter)
 {
     try
     {
@@ -372,13 +375,24 @@ public static string ProcessCsvFilesToJson()
 
         var records = new List<GasPriceRecord>();
 
+        using var context = new GashubContext();
+
         foreach (var file in files)
         {
-            var fileName = Path.GetFileNameWithoutExtension(file); 
+            string fileName = Path.GetFileName(file);
+
+            // ✅ Check if file already processed
+            bool alreadyProcessed = context.FilesProcessed.Any(fp => fp.FilePath == fileName);
+            if (alreadyProcessed)
+            {
+                Console.WriteLine($"Skipping {fileName}, already processed.");
+                continue;
+            }
+
+            var fileNameNoExt = Path.GetFileNameWithoutExtension(file); 
             DateTime recordDate = DateTime.Now;
 
-            // Parse date from filename (e.g. gas_prices_2024_11_01.csv)
-            var parts = fileName.Split('_'); 
+            var parts = fileNameNoExt.Split('_'); 
             if (parts.Length >= 5 &&
                 int.TryParse(parts[2], out int year) &&
                 int.TryParse(parts[3], out int month) &&
@@ -387,17 +401,16 @@ public static string ProcessCsvFilesToJson()
                 recordDate = new DateTime(year, month, day);
             }
 
-            // ✅ Skip if year doesn’t match filter
             if (recordDate.Year != yearFilter)
                 continue;
 
-            var lines = File.ReadAllLines(file).Skip(1); // skip header
+            var lines = File.ReadAllLines(file).Skip(1);
 
             var record = new GasPriceRecord
             {
                 RecordDate = recordDate,
-                Description = $"Imported from {Path.GetFileName(file)}",
-                GasHubId = fileName
+                Description = $"Imported from {fileName}",
+                GasHubId = fileNameNoExt
             };
 
             int tickerIndex = 1;
@@ -436,16 +449,12 @@ public static string ProcessCsvFilesToJson()
                 }
             }
 
-            // ✅ Calculate new fields
             record.TickerTotals = prices.Count;
             record.DailyAverage = prices.Count > 0 ? prices.Average() : null;
 
             records.Add(record);
 
-            // -------------------------------
-            // 🔄 Write processed CSV into ./DATA/PROCESSED
-            // -------------------------------
-            var outputFile = Path.Combine(processedPath, $"{fileName}_processed.csv");
+            var outputFile = Path.Combine(processedPath, $"{fileNameNoExt}_processed.csv");
 
             var csvLines = new List<string>
             {
@@ -484,7 +493,7 @@ public static string ProcessCsvFilesToJson()
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Error(2-Year): Function 2 + {ex.InnerException?.Message ?? ex.Message}");
+        Console.WriteLine($"Error(7): Function 7 + {ex.InnerException?.Message ?? ex.Message}");
         throw;
     }
 }
