@@ -55,6 +55,7 @@ class Program
         app.MapGasPriceRecordEndpoints();
         app.MapApilogEndpoints();
         app.MapGasTickerPriceEndpoints();
+        app.MapFilesProcessedEndpoints();
 
         // Run REST API in background
         var webTask = app.RunAsync();
