@@ -220,4 +220,32 @@ public static void ShowPrices()
     }
     }
 
+    public static void EraseDB()
+    {
+    try
+    {
+        using (var context = new GashubContext())
+        {
+            // Remove all rows from each table
+            context.Apilogs.RemoveRange(context.Apilogs);
+            context.FilesProcessed.RemoveRange(context.FilesProcessed);
+            context.GasPriceRecords.RemoveRange(context.GasPriceRecords);
+            context.GasTickerPrices.RemoveRange(context.GasTickerPrices);
+            context.Gashubs.RemoveRange(context.Gashubs);
+
+            context.SaveChanges();
+        }
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("✅ All data erased from Apilog, FilesProcessed, GasPriceRecord, GasTickerPrice, and Gashub tables.");
+        Console.ResetColor();
+    }
+    catch (Exception ex)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"Error(EraseDB): Failed to erase database + {ex.Message}");
+        Console.ResetColor();
+    }
+    }
+
 }
