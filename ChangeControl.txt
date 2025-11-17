@@ -4,8 +4,10 @@
 11/16 - Determined that a CLI, and RESTAPI can run on the same Application and Thus updated Program to do both. (8+ Hours of Time)
 11/16 - System Complete and Running. Attempt at Demo was done and recorded. Issue is the system had preprocessed data in it, so the recorded demo was probably not sufficient proof to success.
 11/16 - Generated an HTML Single File which showed a Chart of the PriceHub Data.
+11/16 - Updated all controllers for Full Partial Puts and Validation on Posted Strings.
 11/17 - Updated I/O to included saving Processed Records, and JSONS. This added a 5th table to the system, and a new model, and context updates.
 11/17 - Documented the system and update the menu system.
+11/17 - Added Controller for Files Processed a New Set of 4 Endpoints.
 
 Estimate time to RFS is about 5 Days - 40 Hours with the assistance of Copilot. This project is larger than a final project for any other class 567,587, etc and the notes for time estimates are off by 400%.
 CG estimated a 6-8 hour time block to build the project. We however built a CLI, a RESTAPI, an Actions Controller, and a Single D3 Visualization with multiple data objects.
