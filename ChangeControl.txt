@@ -8,6 +8,7 @@
 11/17 - Updated I/O to included saving Processed Records, and JSONS. This added a 5th table to the system, and a new model, and context updates.
 11/17 - Documented the system and update the menu system.
 11/17 - Added Controller for Files Processed a New Set of 4 Endpoints.
+11/17 - Added in Middlware, and UnitTests. Recompiled at Swearingen.
 
 Estimate time to RFS is about 5 Days - 40 Hours with the assistance of Copilot. This project is larger than a final project for any other class 567,587, etc and the notes for time estimates are off by 400%.
 CG estimated a 6-8 hour time block to build the project. We however built a CLI, a RESTAPI, an Actions Controller, and a Single D3 Visualization with multiple data objects.

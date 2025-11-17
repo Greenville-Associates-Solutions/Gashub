@@ -604,3 +604,9 @@ C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\n
 C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_08.csv
 C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_12.csv
 C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\appsettings.json
+X:\G547\Gashub\bin\Debug\net9.0\appsettings.json
+X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_04.csv
+X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_06.csv
+X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_07.csv
+X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_08.csv
+X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_12.csv
