@@ -2,6 +2,16 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using Enterpriseservices; // <-- bring in FileIO
 
+
+
+//THIS IS A FANCY GRID CONTROLLER.
+//IT PROMPTS THE USER FOR AN ACTION WHICH IS AN INTEGER.
+//IT RUNS FUNCTIONS ON THE CONSOLE, AND RETURNS DATA AS NECESSARY.
+//ALL THE FILES IN THE DATA DIRECTORY CAN BE PROCESSED BY 4,5,6,7.
+//OPTIONS 1,2,3 ARE HISTORICAL FROM OTHER GRID CONTROLLERS AND ONLY RETURN DIAGNOSTIC SAMPLE DATA WHICH IS A G/A NORMALIZATION.
+
+
+
 [ApiController]
 [Route("[controller]")]
 public class GasActionsController : ControllerBase
@@ -15,13 +25,13 @@ public class GasActionsController : ControllerBase
     {
         switch (option)
         {
-            case 1: return ListGasHubs();
-            case 2: return GetPriceHistory();
-            case 3: return ProcessPrices();
-            case 4: return GetFileList();   
-            case 5: return RunFullPipeline(); 
-            case 6: return RunPipeline_1_2_4();
-            case 7: return RunPipeline_1_2_5();
+            case 1: return ListGasHubs();  //Returns Sample Hub Data - Demo Only
+            case 2: return GetPriceHistory(); //Returns Sample Hub Data - Demo Only
+            case 3: return ProcessPrices(); //Returns Sample Hub Data - Demo Only
+            case 4: return GetFileList();   //Returns the Exact list of Data Files in the /DATA Directory
+            case 5: return RunFullPipeline(); //Runs all the I/O Functions and Imports all the Required Data.
+            case 6: return RunPipeline_1_2_4(); //Runs all the Gashub I/O Functions Only.
+            case 7: return RunPipeline_1_2_5(); //Runs all the Ticker History Only.
             default:
                 return BadRequest(new { Error = "Invalid option. Use 1 for hubs, 2 for history, 3 for branches, 4 for file list, 5 for full pipeline, 6 for 1-2-4, 7 for 1-2-5." });
         }
