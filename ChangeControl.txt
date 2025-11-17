@@ -9,3 +9,5 @@
 
 Estimate time to RFS is about 5 Days - 40 Hours with the assistance of Copilot. This project is larger than a final project for any other class 567,587, etc and the notes for time estimates are off by 400%.
 CG estimated a 6-8 hour time block to build the project. We however built a CLI, a RESTAPI, an Actions Controller, and a Single D3 Visualization with multiple data objects.
+Without Copilot and requirements for multiple team members, this project could have easily spanned a month as we would have had to look up many functions which arent in any textbook we were assigned.
+None of the IO functions are in the assigned text.
