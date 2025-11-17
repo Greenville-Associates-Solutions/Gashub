@@ -380,7 +380,6 @@ public static string ProcessCsvFilesToJson()
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function 7: This function takes a Date Year as a parameter, and processes all the .CSV files to JSON which match the date year. Its a more sophisticated version of Function2 which processes all records in the directory.
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/ -------------------------------
 // Function 7: ProcessCsvFilesToJsonByYear
 // -------------------------------
 // Inputs: This Function takes a Calendar Year as its Parameters 
