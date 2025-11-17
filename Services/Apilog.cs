@@ -21,7 +21,7 @@ namespace Enterpriseservices
                     Apiresult = apiresult
                 };
 
-                //context.Apilogs.Add(logEntry);
+                context.Apilogs.Add(logEntry);
                 context.SaveChanges();
                 return;
             }
