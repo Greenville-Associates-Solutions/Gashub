@@ -17,6 +17,9 @@ using Microsoft.AspNetCore.Builder;
 namespace Enterprise.Controllers;
 
 
+//THIS FILE HAS CRUD ENDPOINTS WHICH ARE GENERIC FOR THE Apilog Table. (GET, PUT, POST, DELETE).
+//IT IS IDENTICAL TO THE FORM OF THE OTHER CONTROLLERS.
+
 public static class ApilogEndpoints
 {
     
