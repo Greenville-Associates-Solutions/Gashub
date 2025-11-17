@@ -50,13 +50,25 @@ public static string ProcessCsvFilesToJson()
         var files = Directory.GetFiles(dataPath, "*.csv");
         var records = new List<GasPriceRecord>();
 
+        using var context = new GashubContext();
+
         foreach (var file in files)
         {
-            var fileName = Path.GetFileNameWithoutExtension(file); 
+            string fileName = Path.GetFileName(file);
+
+            // ✅ Check if file already processed
+            bool alreadyProcessed = context.FilesProcessed.Any(fp => fp.FilePath == fileName);
+            if (alreadyProcessed)
+            {
+                Console.WriteLine($"Skipping {fileName}, already processed.");
+                continue;
+            }
+
+            var fileNameNoExt = Path.GetFileNameWithoutExtension(file); 
             DateTime recordDate = DateTime.Now;
 
-            // Parse date from filename (e.g. gas_prices_2024_11_01.csv)
-            var parts = fileName.Split('_'); 
+            // Parse date from filename
+            var parts = fileNameNoExt.Split('_'); 
             if (parts.Length >= 5 &&
                 int.TryParse(parts[2], out int year) &&
                 int.TryParse(parts[3], out int month) &&
@@ -70,8 +82,8 @@ public static string ProcessCsvFilesToJson()
             var record = new GasPriceRecord
             {
                 RecordDate = recordDate,
-                Description = $"Imported from {Path.GetFileName(file)}",
-                GasHubId = fileName
+                Description = $"Imported from {fileName}",
+                GasHubId = fileNameNoExt
             };
 
             int tickerIndex = 1;
@@ -110,21 +122,14 @@ public static string ProcessCsvFilesToJson()
                 }
             }
 
-            // ✅ Calculate new fields
             record.TickerTotals = prices.Count;
             record.DailyAverage = prices.Count > 0 ? prices.Average() : null;
 
             records.Add(record);
 
-            // -------------------------------
-            // 🔄 Write processed CSV into ./DATA/PROCESSED
-            // -------------------------------
-            var outputFile = Path.Combine(processedPath, $"{fileName}_processed.csv");
-
-            var csvLines = new List<string>
-            {
-                "Ticker;Price" // header
-            };
+            // Write processed CSV
+            var outputFile = Path.Combine(processedPath, $"{fileNameNoExt}_processed.csv");
+            var csvLines = new List<string> { "Ticker;Price" };
 
             if (!string.IsNullOrEmpty(record.Ticker1)) csvLines.Add($"{record.Ticker1};{record.Price1}");
             if (!string.IsNullOrEmpty(record.Ticker2)) csvLines.Add($"{record.Ticker2};{record.Price2}");
@@ -137,21 +142,15 @@ public static string ProcessCsvFilesToJson()
             if (!string.IsNullOrEmpty(record.Ticker9)) csvLines.Add($"{record.Ticker9};{record.Price9}");
             if (!string.IsNullOrEmpty(record.Ticker10)) csvLines.Add($"{record.Ticker10};{record.Price10}");
 
-            // Add summary line
             csvLines.Add($"TOTAL_TICKERS;{record.TickerTotals}");
             csvLines.Add($"DAILY_AVERAGE;{record.DailyAverage}");
 
             File.WriteAllLines(outputFile, csvLines);
 
-            // -------------------------------
-            // ✅ Call Function 6 to log into FILESPROCESSED
-            // -------------------------------
+            // ✅ Log into FILESPROCESSED
             WriteProcessed(outputFile);
         }
 
-        // -------------------------------
-        // ✅ Leave JSON in ./DATA
-        // -------------------------------
         string jsonOutput = JsonSerializer.Serialize(records);
         string jsonFile = Path.Combine(dataPath, "GasRecords.json");
         File.WriteAllText(jsonFile, jsonOutput);
@@ -164,9 +163,6 @@ public static string ProcessCsvFilesToJson()
         throw;
     }
 }
-
-
-
 
         // -------------------------------
         // Function 3: PostJsonToDatabase
@@ -317,9 +313,9 @@ public static string ProcessCsvFilesToJson()
     }
 }
 
-// -------------------------------
-// Function 6: WriteProcessed
-// -------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Function 6: WriteProcessed - This Function writes to a Logger all the files Processed by Function2, and 7 below into a table. This could be used to screen reprocessed files.
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static void WriteProcessed(string filepath)
     {
     try
@@ -356,7 +352,143 @@ public static string ProcessCsvFilesToJson()
     }
     }
 
-       
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Function 7: This function takes a Date Year as a parameter, and processes all the .CSV files to JSON which match the date year. Its a more sophisticated version of Function2 which processes all records in the directory.
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+       public static string ProcessCsvFilesToJsonByYear(int yearFilter)
+{
+    try
+    {
+        string dataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DATA");
+        string processedPath = Path.Combine(dataPath, "PROCESSED");
+
+        if (!Directory.Exists(processedPath))
+            Directory.CreateDirectory(processedPath);
+
+        var files = Directory.GetFiles(dataPath, "*.csv")
+                             .Where(f => Path.GetFileNameWithoutExtension(f).Contains(yearFilter.ToString()))
+                             .ToList();
+
+        var records = new List<GasPriceRecord>();
+
+        foreach (var file in files)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(file); 
+            DateTime recordDate = DateTime.Now;
+
+            // Parse date from filename (e.g. gas_prices_2024_11_01.csv)
+            var parts = fileName.Split('_'); 
+            if (parts.Length >= 5 &&
+                int.TryParse(parts[2], out int year) &&
+                int.TryParse(parts[3], out int month) &&
+                int.TryParse(parts[4], out int day))
+            {
+                recordDate = new DateTime(year, month, day);
+            }
+
+            // ✅ Skip if year doesn’t match filter
+            if (recordDate.Year != yearFilter)
+                continue;
+
+            var lines = File.ReadAllLines(file).Skip(1); // skip header
+
+            var record = new GasPriceRecord
+            {
+                RecordDate = recordDate,
+                Description = $"Imported from {Path.GetFileName(file)}",
+                GasHubId = fileName
+            };
+
+            int tickerIndex = 1;
+            var prices = new List<decimal>();
+
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                var partsLine = line.Split(';');
+                string ticker = partsLine.Length > 0 ? partsLine[0].Trim() : null;
+                decimal? price = null;
+
+                if (partsLine.Length > 1 && decimal.TryParse(partsLine[1], out var p))
+                    price = p;
+
+                if (!string.IsNullOrEmpty(ticker))
+                {
+                    switch (tickerIndex)
+                    {
+                        case 1: record.Ticker1 = ticker; record.Price1 = price; break;
+                        case 2: record.Ticker2 = ticker; record.Price2 = price; break;
+                        case 3: record.Ticker3 = ticker; record.Price3 = price; break;
+                        case 4: record.Ticker4 = ticker; record.Price4 = price; break;
+                        case 5: record.Ticker5 = ticker; record.Price5 = price; break;
+                        case 6: record.Ticker6 = ticker; record.Price6 = price; break;
+                        case 7: record.Ticker7 = ticker; record.Price7 = price; break;
+                        case 8: record.Ticker8 = ticker; record.Price8 = price; break;
+                        case 9: record.Ticker9 = ticker; record.Price9 = price; break;
+                        case 10: record.Ticker10 = ticker; record.Price10 = price; break;
+                    }
+                    tickerIndex++;
+
+                    if (price.HasValue)
+                        prices.Add(price.Value);
+                }
+            }
+
+            // ✅ Calculate new fields
+            record.TickerTotals = prices.Count;
+            record.DailyAverage = prices.Count > 0 ? prices.Average() : null;
+
+            records.Add(record);
+
+            // -------------------------------
+            // 🔄 Write processed CSV into ./DATA/PROCESSED
+            // -------------------------------
+            var outputFile = Path.Combine(processedPath, $"{fileName}_processed.csv");
+
+            var csvLines = new List<string>
+            {
+                "Ticker;Price" // header
+            };
+
+            if (!string.IsNullOrEmpty(record.Ticker1)) csvLines.Add($"{record.Ticker1};{record.Price1}");
+            if (!string.IsNullOrEmpty(record.Ticker2)) csvLines.Add($"{record.Ticker2};{record.Price2}");
+            if (!string.IsNullOrEmpty(record.Ticker3)) csvLines.Add($"{record.Ticker3};{record.Price3}");
+            if (!string.IsNullOrEmpty(record.Ticker4)) csvLines.Add($"{record.Ticker4};{record.Price4}");
+            if (!string.IsNullOrEmpty(record.Ticker5)) csvLines.Add($"{record.Ticker5};{record.Price5}");
+            if (!string.IsNullOrEmpty(record.Ticker6)) csvLines.Add($"{record.Ticker6};{record.Price6}");
+            if (!string.IsNullOrEmpty(record.Ticker7)) csvLines.Add($"{record.Ticker7};{record.Price7}");
+            if (!string.IsNullOrEmpty(record.Ticker8)) csvLines.Add($"{record.Ticker8};{record.Price8}");
+            if (!string.IsNullOrEmpty(record.Ticker9)) csvLines.Add($"{record.Ticker9};{record.Price9}");
+            if (!string.IsNullOrEmpty(record.Ticker10)) csvLines.Add($"{record.Ticker10};{record.Price10}");
+
+            // Add summary line
+            csvLines.Add($"TOTAL_TICKERS;{record.TickerTotals}");
+            csvLines.Add($"DAILY_AVERAGE;{record.DailyAverage}");
+
+            File.WriteAllLines(outputFile, csvLines);
+
+            // ✅ Log into FILESPROCESSED (Function 6)
+            WriteProcessed(outputFile);
+        }
+
+        // -------------------------------
+        // ✅ Leave JSON in ./DATA
+        // -------------------------------
+        string jsonOutput = JsonSerializer.Serialize(records);
+        string jsonFile = Path.Combine(dataPath, $"GasRecords_{yearFilter}.json");
+        File.WriteAllText(jsonFile, jsonOutput);
+
+        return jsonOutput;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error(2-Year): Function 2 + {ex.InnerException?.Message ?? ex.Message}");
+        throw;
+    }
+}
+
 
     }
 }
