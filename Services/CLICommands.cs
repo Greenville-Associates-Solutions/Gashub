@@ -12,6 +12,13 @@ using System.Security.Cryptography.X509Certificates;
 
 public class CLISupport
 {
+       //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Function #1 - PromptAndShowTickerPrices()
+      // Inputs: This Function takes no arguments and does not restrict the output.
+      // Actions: This function requests the ticker name you want to track. It then prints the GasTickerPrices to the Screen as a dump which could be large in a big system...but we have only 5/10 days of data.
+      // Returns: This Function Returns Nothing But Writes the Output to System Console (Which when the CLI is running the API as well will include diagnostic calls for every API call).
+      //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
     public static void PromptAndShowTickerPrices()
     {
     Console.Write("Enter ticker symbol: ");
@@ -44,6 +51,13 @@ public class CLISupport
         }
         }
 
+      //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Function #2 - PromptAndShowTickerPricesByDate()
+      // Inputs: This Function takes no arguments and does not restrict the output.
+      // Actions: This function prompts the user for a Date Range.
+      // Returns: This Function Returns Nothing But Writes the Output to System Console for only the date requested. (Which when the CLI is running the API as well will include diagnostic calls for every API call).
+      //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
     public static void PromptAndShowPricesByDate()
     {
     Console.Write("Enter month (MM): ");
@@ -118,6 +132,15 @@ public class CLISupport
     }
     }
 
+      //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Function #3 - Rull Full Pipeline
+      // Inputs: This Function takes no arguments.
+      // Actions: This function processes all .CSVs into all four sub-tables. (GasHub, GasPriceRecords, GasTickerPrice, FilesProcessed)
+      // Returns: This Function Returns Nothing Except a Status Message on the Pipeline.
+      //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    
 public static void RunFullPipeline()
 {
     try
@@ -154,7 +177,13 @@ public static void RunFullPipeline()
     }
 }
 
-
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       // Function #4 - ShowPrices()
+       // Inputs: This Function takes no arguments and does not restrict the output.
+       // Actions: This function prints the PriceRecordDetails to the Screen for all records in the system without restriction.
+       // Returns: This Function Returns Nothing But Writes the Output to System Console (Which when the CLI is running the API as well will include diagnostic calls for every API call).
+   //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
 //SUPPORTS CLI OPTIONS MENU TO SHOW PRICES FOR FIRST FIVE DAYS.
 public static void ShowPrices()
 {
@@ -204,6 +233,14 @@ public static void ShowPrices()
         }
     }
 }
+
+     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Function #5 - ShowHubs()
+      // Inputs: None.
+      // Actions: This Function shows the Hubs from all the Price Records and requires Unique Keys on the Ticker, and Name. Each Hub is essentially a Vendor for NewCo. It has sufficient attributes for addresses.
+      // Returns: This Function Returns Nothing But Writes the Output to System Console (Which when the CLI is running the API as well will include diagnostic calls for every API call).
+      //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
     public static void ShowHubs()
     {
     using (var context = new GashubContext())
@@ -219,7 +256,15 @@ public static void ShowPrices()
         }
     }
     }
-
+    
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // Function #6 - ShowHubs()
+      // Inputs: None.
+      // Actions: This Function erases all the tables so that demonstrations can be redone, or the system retested for behavior after major modifications.
+      // Returns: None.
+      //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
     public static void EraseDB()
     {
     try
