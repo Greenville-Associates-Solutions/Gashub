@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\models\\gaspricerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:models\\gaspricerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\controllers\\gaspricerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:controllers\\gaspricerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\services\\fileio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:services\\fileio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\models\\gashubcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:models\\gashubcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\controllers\\filesprocessed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:controllers\\filesprocessed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\services\\clicommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:services\\clicommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,6 +47,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GasPriceRecord.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasPriceRecord.cs",
+              "RelativeDocumentMoniker": "Models\\GasPriceRecord.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasPriceRecord.cs",
+              "RelativeToolTip": "Models\\GasPriceRecord.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:38:51.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GasPriceRecord.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\GasPriceRecord.cs",
+              "RelativeDocumentMoniker": "Controllers\\GasPriceRecord.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\GasPriceRecord.cs",
+              "RelativeToolTip": "Controllers\\GasPriceRecord.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:38:42.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FileIO.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\FileIO.cs",
+              "RelativeDocumentMoniker": "Services\\FileIO.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\FileIO.cs",
+              "RelativeToolTip": "Services\\FileIO.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAADwv3EAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:37:46.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GasHubContext.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasHubContext.cs",
+              "RelativeDocumentMoniker": "Models\\GasHubContext.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasHubContext.cs",
+              "RelativeToolTip": "Models\\GasHubContext.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowBMAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:37:08.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FilesProcessed.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\FilesProcessed.cs",
+              "RelativeDocumentMoniker": "Controllers\\FilesProcessed.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\FilesProcessed.cs",
+              "RelativeToolTip": "Controllers\\FilesProcessed.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAADwvygAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:36:56.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CLICommands.cs",
               "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\CLICommands.cs",
               "RelativeDocumentMoniker": "Services\\CLICommands.cs",
@@ -39,20 +124,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "GasTickerPrice.cs",
               "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasTickerPrice.cs",
               "RelativeDocumentMoniker": "Models\\GasTickerPrice.cs",
               "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasTickerPrice.cs",
               "RelativeToolTip": "Models\\GasTickerPrice.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-17T18:32:13.542Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
