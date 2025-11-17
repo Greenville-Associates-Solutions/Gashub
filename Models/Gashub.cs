@@ -9,10 +9,6 @@ public partial class Gashub
 
     public string CompanyId { get; set; }
 
-    public string CompanyName { get; set; }
-    
-    public string GasTicker { get; set; }
-
     public string MailAddress1 { get; set; }
 
     public string MailAddress2 { get; set; }
@@ -50,4 +46,8 @@ public partial class Gashub
     public string CompanyCare { get; set; }
 
     public string Description { get; set; }
+
+    public string GasTicker { get; set; }
+
+    public string CompanyName { get; set; }
 }

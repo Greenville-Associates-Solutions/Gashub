@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\controllers\\apilog - copy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:controllers\\apilog - copy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\services\\clicommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:services\\clicommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\controllers\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:controllers\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\cli.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:cli.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\models\\gastickerprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:models\\gastickerprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|c:\\users\\stritzj\\source\\repos\\greenville-associates-solutions\\gashub\\models\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A65B6F3F-4680-38C9-DDD5-4C6812E4F811}|GasHub.csproj|solutionrelative:models\\apilog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,32 +27,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Apilog - Copy.cs",
-              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\Apilog - Copy.cs",
-              "RelativeDocumentMoniker": "Controllers\\Apilog - Copy.cs",
-              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\Apilog - Copy.cs",
-              "RelativeToolTip": "Controllers\\Apilog - Copy.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAQwDcAAAAAAAAAAAAAAA==",
+              "Title": "CLICommands.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\CLICommands.cs",
+              "RelativeDocumentMoniker": "Services\\CLICommands.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Services\\CLICommands.cs",
+              "RelativeToolTip": "Services\\CLICommands.cs",
+              "ViewState": "AgIAAAcBAAAAAAAAAAAswBUBAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T15:46:15.308Z",
+              "WhenOpened": "2025-11-17T18:34:04.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GasTickerPrice.cs",
+              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasTickerPrice.cs",
+              "RelativeDocumentMoniker": "Models\\GasTickerPrice.cs",
+              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\GasTickerPrice.cs",
+              "RelativeToolTip": "Models\\GasTickerPrice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:32:13.542Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CLI.cs",
-              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\CLI.cs",
-              "RelativeDocumentMoniker": "CLI.cs",
-              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\CLI.cs",
-              "RelativeToolTip": "CLI.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T15:41:40.743Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -69,32 +61,6 @@
               "ViewState": "AgIAADYAAAAAAAAAAAAAADsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T15:40:27.544Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Apilog.cs",
-              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\Apilog.cs",
-              "RelativeDocumentMoniker": "Models\\Apilog.cs",
-              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Models\\Apilog.cs",
-              "RelativeToolTip": "Models\\Apilog.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAA5wBUAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T15:38:33.433Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Apilog.cs",
-              "DocumentMoniker": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\Apilog.cs",
-              "RelativeDocumentMoniker": "Controllers\\Apilog.cs",
-              "ToolTip": "C:\\Users\\stritzj\\source\\repos\\Greenville-Associates-Solutions\\Gashub\\Controllers\\Apilog.cs",
-              "RelativeToolTip": "Controllers\\Apilog.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAADwv1oAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T15:36:20.306Z",
               "EditorCaption": ""
             }
           ]

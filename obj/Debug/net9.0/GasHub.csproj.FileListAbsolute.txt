@@ -593,3 +593,13 @@ X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_02.csv
 X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_03.csv
 X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_04.csv
 X:\G547\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_05.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_01.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_02.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_03.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_04.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2024_11_05.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_04.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_06.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_07.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_08.csv
+C:\Users\stritzj\source\repos\Greenville-Associates-Solutions\Gashub\bin\Debug\net9.0\DATA\gas_prices_2025_01_12.csv

@@ -87,6 +87,37 @@
           }
         }
       },
+      "delete": {
+        "tags": [
+          "Apilog"
+        ],
+        "operationId": "DeleteApilog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Apilog/api/apilog/{id}": {
       "put": {
         "tags": [
           "Apilog"
@@ -121,35 +152,6 @@
           },
           "202": {
             "description": "Accepted"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Apilog"
-        ],
-        "operationId": "DeleteApilog",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Void"
-                }
-              }
-            }
           }
         }
       }
@@ -474,6 +476,155 @@
           }
         }
       }
+    },
+    "/api/GasTickerPrice": {
+      "get": {
+        "tags": [
+          "GasTickerPrice"
+        ],
+        "operationId": "GetAllGasTickerPrices",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GasTickerPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "GasTickerPrice"
+        ],
+        "operationId": "CreateGasTickerPrice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GasTickerPrice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/GasTickerPrice/{id}": {
+      "get": {
+        "tags": [
+          "GasTickerPrice"
+        ],
+        "operationId": "GetGasTickerPriceById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GasTickerPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GasTickerPrice"
+        ],
+        "operationId": "UpdateGasTickerPrice",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GasTickerPrice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "GasTickerPrice"
+        ],
+        "operationId": "DeleteGasTickerPrice",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -618,9 +769,45 @@
             "format": "double",
             "nullable": true
           },
+          "dailyAverage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tickerTotals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "gasHubId": {
             "type": "string",
             "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GasTickerPrice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gasTicker": {
+            "type": "string",
+            "nullable": true
+          },
+          "recordDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
           },
           "description": {
             "type": "string",
@@ -713,6 +900,14 @@
             "nullable": true
           },
           "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "gasTicker": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
             "type": "string",
             "nullable": true
           }

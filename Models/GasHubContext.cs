@@ -14,15 +14,16 @@ public partial class GashubContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<GasTickerPrice> GasTickerPrices { get; set; }
 
     public virtual DbSet<Apilog> Apilogs { get; set; }
 
+    public virtual DbSet<FilesProcessed> FilesProcessed { get; set; }
+
     public virtual DbSet<GasPriceRecord> GasPriceRecords { get; set; }
 
-    public virtual DbSet<Gashub> Gashubs { get; set; }
+    public virtual DbSet<GasTickerPrice> GasTickerPrices { get; set; }
 
-    public virtual DbSet<FilesProcessed> FilesProcessed { get; set; }
+    public virtual DbSet<Gashub> Gashubs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -38,11 +39,22 @@ public partial class GashubContext : DbContext
             entity.Property(e => e.Hashid).HasColumnType("INT");
         });
 
+        modelBuilder.Entity<FilesProcessed>(entity =>
+        {
+            entity.ToTable("FilesProcessed");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.FileDate).HasColumnType("DATE");
+            entity.Property(e => e.FilePath).IsRequired();
+            entity.Property(e => e.ProcessedDateTime).HasColumnType("DATETIME");
+        });
+
         modelBuilder.Entity<GasPriceRecord>(entity =>
         {
             entity.ToTable("GasPriceRecord");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.DailyAverage).HasColumnType("decimal");
             entity.Property(e => e.Price1).HasColumnType("NUMERIC(10,4)");
             entity.Property(e => e.Price10).HasColumnType("NUMERIC(10,4)");
             entity.Property(e => e.Price2).HasColumnType("NUMERIC(10,4)");
@@ -64,8 +76,16 @@ public partial class GashubContext : DbContext
             entity.Property(e => e.Ticker7).HasColumnType("VARCHAR(10)");
             entity.Property(e => e.Ticker8).HasColumnType("VARCHAR(10)");
             entity.Property(e => e.Ticker9).HasColumnType("VARCHAR(10)");
-            entity.Property(e => e.DailyAverage);
-            entity.Property(e => e.TickerTotals);
+            entity.Property(e => e.TickerTotals).HasColumnType("INT");
+        });
+
+        modelBuilder.Entity<GasTickerPrice>(entity =>
+        {
+            entity.HasIndex(e => new { e.GasTicker, e.RecordDate }, "IX_GasTickerPrices_GasTicker_RecordDate").IsUnique();
+
+            entity.Property(e => e.GasTicker).IsRequired();
+            entity.Property(e => e.Price).HasColumnType("NUMERIC(10,4)");
+            entity.Property(e => e.RecordDate).HasColumnType("DATE");
         });
 
         modelBuilder.Entity<Gashub>(entity =>
@@ -79,57 +99,15 @@ public partial class GashubContext : DbContext
                 .IsRequired()
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("CompanyID");
-            entity.Property(e => e.CompanyName)   // ✅ Map CompanyName
-                  .HasMaxLength(200);
             entity.Property(e => e.CompanyPhone).HasColumnType("VARCHAR(20)");
             entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.Glaccount)
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("GLAccount");
             entity.Property(e => e.SubAccount).HasColumnType("VARCHAR(50)");
-            entity.Property(e => e.GasTicker).HasColumnType("TEXT");
         });
 
-       
-modelBuilder.Entity<GasTickerPrice>(entity =>
-{
-    entity.HasKey(e => e.Id);
-
-    entity.HasIndex(e => new { e.GasTicker, e.RecordDate })
-          .IsUnique();   // enforce one record per ticker per day
-
-    entity.Property(e => e.RecordDate)
-          .HasColumnType("DATE");
-
-    entity.Property(e => e.Price)
-          .HasColumnType("NUMERIC(10,4)")
-          .IsRequired();
-});
-
- modelBuilder.Entity<FilesProcessed>(entity =>
-            {
-                entity.ToTable("FILESPROCESSED");
-
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Id)
-                      .HasColumnName("ID");
-
-                entity.Property(e => e.FilePath)
-                      .HasColumnType("TEXT")
-                      .IsRequired();
-
-                entity.Property(e => e.FileDate)
-                      .HasColumnType("DATE")
-                      .IsRequired();
-
-                entity.Property(e => e.ProcessedDateTime)
-                      .HasColumnType("DATETIME")
-                      .IsRequired();
-            });
-
-
-    OnModelCreatingPartial(modelBuilder);
+        OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

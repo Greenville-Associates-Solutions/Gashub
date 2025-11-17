@@ -1,15 +1,15 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Gas.Models
+namespace Gas.Models;
+
+public partial class FilesProcessed
 {
-    public partial class FilesProcessed
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string FilePath { get; set; }
+    public string FilePath { get; set; }
 
-        public DateTime FileDate { get; set; }
+    public DateTime FileDate { get; set; }
 
-        public DateTime ProcessedDateTime { get; set; }
-    }
+    public DateTime ProcessedDateTime { get; set; }
 }
